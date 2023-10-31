@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public int HP = 99;
+    
     public float speed = 10f;
 
     private Rigidbody rigidBodyRef;
@@ -13,6 +15,11 @@ public class PlayerController : MonoBehaviour
     public float deathYLevel = -3f;
 
     private Vector3 startingPos;
+
+
+    private int easyEnemyDamage = 15;
+    private int hardEnemyDamage = 35;
+
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +64,32 @@ public class PlayerController : MonoBehaviour
         else
         {
             Debug.Log("Player is not touching the ground so they can't jump");
+        }
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Portal")
+        {
+            startingPos = other.gameObject.GetComponent<Portal>().teleportPoint.transform.position;
+            transform.position = startingPos;
+        }
+        if (other.gameObject.tag == "EasyEnemy")
+        {
+            HP -= easyEnemyDamage;
+        }
+        if (other.gameObject.tag == "HardEnemy")
+        {
+            HP -= hardEnemyDamage;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "EasyEnemy")
+        {
+            HP -= easyEnemyDamage;
         }
     }
 }
