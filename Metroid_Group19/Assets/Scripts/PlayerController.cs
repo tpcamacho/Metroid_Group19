@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
     private bool canTakeDamage = true;
 
+    private bool facingRight = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,13 +43,21 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
-            transform.Rotate(Vector3.up * 180);
+            if (facingRight == true)
+            {
+                transform.Rotate(Vector3.up * 180);
+                facingRight = false;
+            }
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
-            transform.Rotate(Vector3.up * 180);
+            if (facingRight == false)
+            {
+                transform.Rotate(Vector3.up * 180);
+                facingRight = true;
+            }
         }
 
         //jumping
@@ -118,13 +128,24 @@ public class PlayerController : MonoBehaviour
             HP -= easyEnemyDamage;
         }
     }
-
+    
+    public IEnumerator Blink()
+    {
+        for(int Index = 0; Index < 30; Index++)
+        {
+            if (Index % 2 == 0)
+            {
+                GetComponent
+            }
+        }
+    }
 
     //look at unit 17 coroutines example
-    IEnumerator SetInvicible()
+    /*IEnumerator SetInvicible()
     {
         canTakeDamage = false;
         yield return new WaitForSeconds(5f);
         canTakeDamage = true;
     }
+    */
 }
