@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private int easyEnemyDamage = 15;
     private int hardEnemyDamage = 35;
 
+    private bool canTakeDamage = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,11 +41,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
+            transform.Rotate(Vector3.up * 180);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
+            transform.Rotate(Vector3.up * 180);
         }
 
         //jumping
@@ -51,6 +55,16 @@ public class PlayerController : MonoBehaviour
         {
             HandleJump();
         }
+
+
+
+        if (transform.position.y <= deathYLevel)
+        {
+            SceneManager.LoadScene(1);
+            Debug.Log("Game Ends");
+        }
+
+        GameOver();
     }
 
     private void HandleJump()
@@ -68,16 +82,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /* attempt failed
+    //attempt failed
     private void GameOver()
     {
-        if (HP == 0)
+         if (HP <= 0)
         {
             SceneManager.LoadScene(1);
             Debug.Log("Game Ends");
         }
     }
-    */
+    
 
 
     private void OnTriggerEnter(Collider other)
@@ -103,5 +117,14 @@ public class PlayerController : MonoBehaviour
         {
             HP -= easyEnemyDamage;
         }
+    }
+
+
+    //look at unit 17 coroutines example
+    IEnumerator SetInvicible()
+    {
+        canTakeDamage = false;
+        yield return new WaitForSeconds(5f);
+        canTakeDamage = true;
     }
 }
