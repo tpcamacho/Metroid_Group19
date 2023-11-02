@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -66,6 +67,17 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Player is not touching the ground so they can't jump");
         }
     }
+
+    /* attempt failed
+    private void GameOver()
+    {
+        if (HP == 0)
+        {
+            SceneManager.LoadScene(1);
+            Debug.Log("Game Ends");
+        }
+    }
+    */
 
 
     private void OnTriggerEnter(Collider other)
