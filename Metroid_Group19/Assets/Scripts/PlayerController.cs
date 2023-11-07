@@ -128,7 +128,8 @@ public class PlayerController : MonoBehaviour
             HP -= easyEnemyDamage;
         }
     }
-    
+
+    /*
     public IEnumerator Blink()
     {
         for(int Index = 0; Index < 30; Index++)
@@ -139,6 +140,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    */
 
     //look at unit 17 coroutines example
     /*IEnumerator SetInvicible()
