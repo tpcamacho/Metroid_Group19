@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -135,11 +137,11 @@ public class PlayerController : MonoBehaviour
     {
         if (canTakeDamage)
         {
-
+            StartCoroutine(SetInvincible());
         }
     }
         
-
+    /*
 
     public IEnumerator Blink()
     {
@@ -157,14 +159,55 @@ public class PlayerController : MonoBehaviour
         }
         GetComponent<MeshRenderer>().enabled = true;
     }
-    
+    */
+
+    private void RotatePlayerModel(float angle)
+    {
+        Vector3 currentRotation = transform.rotation.eulerAngles;
+        currentRotation.y = angle;
+        transform.rotation = Quaternion.Euler(currentRotation);
+
+    }
 
     //look at unit 17 coroutines example
-    IEnumerator SetInvicible()
+    IEnumerator SetInvincible()
     {
         canTakeDamage = false;
-        yield return new WaitForSeconds(5f);
+
+        float binkDuration = 5f;
+        float blinkSpeed = 0.2f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < binkDuration)
+        {
+            SetRenderersVisibility(!AreRenderersVisible());
+            yield return new WaitForSeconds(blinkSpeed);
+            elapsedTime += blinkSpeed;
+        }
+
+        SetRenderersVisibility(true);
         canTakeDamage = true;
     }
-    
+
+    private void SetRenderersVisibility(bool visible)
+    {  
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.enabled = visible;
+        }
+    }
+
+    private bool AreRenderersVisible()
+    {  
+        foreach (Renderer renderer in renderers)
+        {
+            if (renderer.enabled)
+            {
+                return true;
+            }
+        }
+        return false;
+    }   
+
+
 }
