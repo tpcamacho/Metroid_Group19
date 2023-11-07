@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public int HP = 99;
-    
+
     public float speed = 10f;
 
     private Rigidbody rigidBodyRef;
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Game Ends");
         }
 
-        GameOver();
+        LosingHP();
     }
 
     private void HandleJump()
@@ -93,15 +93,17 @@ public class PlayerController : MonoBehaviour
     }
 
     //attempt failed
-    private void GameOver()
+    private void LosingHP()
     {
-         if (HP <= 0)
+
+
+        if (HP <= 0)
         {
             SceneManager.LoadScene(1);
             Debug.Log("Game Ends");
         }
     }
-    
+
 
 
     private void OnTriggerEnter(Collider other)
@@ -129,25 +131,40 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /*
+    private void Blink()
+    {
+        if (canTakeDamage)
+        {
+
+        }
+    }
+        
+
+
     public IEnumerator Blink()
     {
         for(int Index = 0; Index < 30; Index++)
         {
             if (Index % 2 == 0)
             {
-                GetComponent
+                GetComponent<MeshRenderer>().enabled = false;
             }
+            else
+            {
+                GetComponent<MeshRenderer>().enabled = false;
+            }
+            yield return new WaitForSeconds(5f);
         }
+        GetComponent<MeshRenderer>().enabled = true;
     }
-    */
+    
 
     //look at unit 17 coroutines example
-    /*IEnumerator SetInvicible()
+    IEnumerator SetInvicible()
     {
         canTakeDamage = false;
         yield return new WaitForSeconds(5f);
         canTakeDamage = true;
     }
-    */
+    
 }
