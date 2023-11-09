@@ -11,6 +11,8 @@ public class EasyEnemy : MonoBehaviour
     private float startingX;
     private bool movingRight = true;
 
+    public int easyEnemeyHP = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,5 +51,20 @@ public class EasyEnemy : MonoBehaviour
                 movingRight = true;
             }
         }
+    }
+
+    public void takeDamage (int damage)
+    {
+        easyEnemeyHP = damage;
+
+        if (easyEnemeyHP <= 0)
+        {
+            die();
+        }
+    }
+
+    void die()
+    {
+        Destroy(gameObject);
     }
 }

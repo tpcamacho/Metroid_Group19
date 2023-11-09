@@ -7,6 +7,8 @@ public class HardEnemy : MonoBehaviour
     private Transform enemy;
     public float speed;
 
+    public int hardEnemyHP = 10;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,15 +26,23 @@ public class HardEnemy : MonoBehaviour
             transform.position = target;
         }
         
-        //Restrictions();
+        
     }
 
-    /*
-    private void Restrictions()
+    public void TakeDamage(int damage)
     {
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, 40f, 50f), transform.position.y, transform.position.z);
+        hardEnemyHP = damage;
+
+        if (hardEnemyHP <= 0)
+        {
+            die();
+        }
     }
-    */
+
+    void die()
+    {
+        Destroy(gameObject);
+    }
 }
 
 

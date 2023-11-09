@@ -133,6 +133,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /*
+
     private void Blink()
     {
         if (canTakeDamage)
@@ -169,6 +171,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    /*
     //look at unit 17 coroutines example
     IEnumerator SetInvincible()
     {
@@ -209,5 +212,5 @@ public class PlayerController : MonoBehaviour
         return false;
     }   
 
-
+    */
 }
