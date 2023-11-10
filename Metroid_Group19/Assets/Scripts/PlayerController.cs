@@ -123,6 +123,13 @@ public class PlayerController : MonoBehaviour
         {
             HP -= hardEnemyDamage;
         }
+
+        if (other.gameObject.tag == "Health")
+        {
+            HP = 100;
+
+            Destroy(other.gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
