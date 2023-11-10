@@ -8,6 +8,8 @@ public class Gun : MonoBehaviour
 
     public GameObject bulletPrefab;
 
+    public int bulletDamage = 1;
+
     // Update is called once per frame
     void Update()
     {

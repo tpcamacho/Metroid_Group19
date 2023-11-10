@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HardEnemy : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class HardEnemy : MonoBehaviour
     public float speed;
 
     public int hardEnemyHP = 10;
+
+    private int bullletDamage = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -39,10 +42,18 @@ public class HardEnemy : MonoBehaviour
         }
     }
 
-    void die()
+
+    private void LosingHP()
     {
-        Destroy(gameObject);
+
+
+        if (hardEnemyHP <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
+
+    
 }
 
 
