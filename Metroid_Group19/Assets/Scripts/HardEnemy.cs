@@ -10,7 +10,7 @@ public class HardEnemy : MonoBehaviour
 
     public int hardEnemyHP = 10;
 
-    private int bullletDamage = 1;
+    private int bulletDamage = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +30,14 @@ public class HardEnemy : MonoBehaviour
         }
         
         
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "bullet")
+        {
+            hardEnemyHP -= bulletDamage;
+        }
     }
 
     public void TakeDamage(int damage)
