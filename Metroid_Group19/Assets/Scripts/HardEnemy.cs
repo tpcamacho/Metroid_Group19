@@ -32,15 +32,8 @@ public class HardEnemy : MonoBehaviour
         
     }
 
-    public void TakeDamage(int damage)
-    {
-        hardEnemyHP = damage;
-
-        if (hardEnemyHP <= 0)
-        {
-            die();
-        }
-    }
+  
+ 
 
 
     private void LosingHP()
