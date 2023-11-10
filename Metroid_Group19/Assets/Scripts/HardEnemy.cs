@@ -32,19 +32,18 @@ public class HardEnemy : MonoBehaviour
         
     }
 
-  
- 
-
-
-    private void LosingHP()
+    public void TakeDamage(int damage)
     {
+        hardEnemyHP = damage;
 
-
-        if (hardEnemyHP <= 0)
+        if(hardEnemyHP <= 0)
         {
             Destroy(this.gameObject);
         }
     }
+ 
+
+
 
     
 }
