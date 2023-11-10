@@ -28,13 +28,13 @@ public class HardEnemy : MonoBehaviour
             target.y = transform.position.y;
             transform.position = target;
         }
-        
+
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "bullet")
+        if (other.gameObject.tag == "bullet")
         {
             hardEnemyHP -= bulletDamage;
         }
@@ -44,14 +44,10 @@ public class HardEnemy : MonoBehaviour
     {
         hardEnemyHP = damage;
 
-        if(hardEnemyHP <= 0)
-        {
-            Destroy(this.gameObject);
-        }
     }
  
 
-
+    private void 
 
     
 }
