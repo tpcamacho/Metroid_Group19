@@ -7,6 +7,7 @@ TagManager:
   - Portal
   - EasyEnemy
   - HardEnemy
+  - Health
   layers:
   - Default
   - TransparentFX
