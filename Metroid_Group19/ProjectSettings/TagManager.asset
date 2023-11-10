@@ -8,6 +8,7 @@ TagManager:
   - EasyEnemy
   - HardEnemy
   - Health
+  - bullet
   layers:
   - Default
   - TransparentFX
