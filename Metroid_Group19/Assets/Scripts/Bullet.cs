@@ -16,6 +16,7 @@ public class Bullet : MonoBehaviour
         rigidBody.velocity = transform.right * speed;
     }
 
+    /*
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
         EasyEnemy easyEnemy = hitInfo.GetComponent<EasyEnemy>();
@@ -32,4 +33,19 @@ public class Bullet : MonoBehaviour
 
         Destroy(gameObject);
     }
+    */
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "EasyEnemy")
+        {
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "HardEnemy")
+        {
+            Destroy(other.gameObject);
+        }
+    }
+
 }

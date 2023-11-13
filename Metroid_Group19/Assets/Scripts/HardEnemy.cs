@@ -37,6 +37,11 @@ public class HardEnemy : MonoBehaviour
         if (other.gameObject.tag == "bullet")
         {
             hardEnemyHP -= bulletDamage;
+
+            if (hardEnemyHP == 0)
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
 
@@ -47,9 +52,7 @@ public class HardEnemy : MonoBehaviour
     }
  
 
-    private void 
 
     
 }
-
 
