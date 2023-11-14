@@ -5,6 +5,10 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
+//Tyler Camacho and Nataly Vazquez
+//11/13/23
+//this controls the player and things that happen to the player
+
 public class PlayerController : MonoBehaviour
 {
     public Material clear;

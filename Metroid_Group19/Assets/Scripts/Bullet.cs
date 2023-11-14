@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//Tyler Camacho and Nataly Vazquez
+//11/13/23
+//this script controls the bullet movement and damage to enemies
 
 public class Bullet : MonoBehaviour
 {

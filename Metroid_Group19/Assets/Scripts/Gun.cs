@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Tyler Camacho and Nataly Vazquez
+//11/13/23
+//this controls the shooting aspect of the gun
+
 public class Gun : MonoBehaviour
 {
     public Transform bulletSpawn;

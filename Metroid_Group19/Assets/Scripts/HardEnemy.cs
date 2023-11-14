@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Tyler Camacho and Nataly Vazquez
+//11/13/23
+//this script controls the hard enemy's movements and damage
+
 public class HardEnemy : MonoBehaviour
 {
     private Transform enemy;

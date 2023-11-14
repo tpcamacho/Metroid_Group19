@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Tyler Camacho and Nataly Vazquez
+//11/13/23
+//this script controls the easy enemy's movements and damage
+
 public class EasyEnemy : MonoBehaviour
 {
     public float travelDistanceRight = 0;
