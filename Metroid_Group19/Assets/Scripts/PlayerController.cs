@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     private int easyEnemyDamage = 15;
     private int hardEnemyDamage = 35;
 
-    private bool canTakeDamage = true;
 
     private bool facingRight = true;
 
