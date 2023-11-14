@@ -8,7 +8,11 @@ public class Bullet : MonoBehaviour
 
     public int damage = 1;
 
-    public Rigidbody2D rigidBody;
+    public Rigidbody rigidBody;
+
+    private int easyEnemyHP = 1;
+
+    private int hardEnemyHP = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -16,36 +20,22 @@ public class Bullet : MonoBehaviour
         rigidBody.velocity = transform.right * speed;
     }
 
-    /*
-    private void OnTriggerEnter2D(Collider2D hitInfo)
+
+    private void OnTriggerEnter(Collider other)
     {
-        EasyEnemy easyEnemy = hitInfo.GetComponent<EasyEnemy>();
+        EasyEnemy easyEnemy = other.GetComponent<EasyEnemy>();
         if (easyEnemy != null)
         {
             easyEnemy.takeDamage(damage);
         }
 
-        HardEnemy hardEnemy = hitInfo.GetComponent<HardEnemy>();
+        HardEnemy hardEnemy = other.GetComponent<HardEnemy>();
         if (hardEnemy != null)
         {
-            hardEnemy.TakeDamage(damage);
+            hardEnemy.takeDamage(damage);
         }
 
         Destroy(gameObject);
-    }
-    */
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "EasyEnemy")
-        {
-            Destroy(other.gameObject);
-        }
-
-        if (other.gameObject.tag == "HardEnemy")
-        {
-            Destroy(other.gameObject);
-        }
     }
 
 }

@@ -138,6 +138,12 @@ public class PlayerController : MonoBehaviour
         {
             HP -= easyEnemyDamage;
         }
+
+        if (collision.gameObject.tag == "HardEnemy")
+        {
+            HP -= hardEnemyDamage;
+        }
+
     }
 
     /*

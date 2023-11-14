@@ -7,16 +7,13 @@ public class HardEnemy : MonoBehaviour
 {
     private Transform enemy;
     public float speed;
-
     public int hardEnemyHP = 10;
-
-    private int bulletDamage = 1;
+    public int bulletDamage = 1;
 
     // Start is called before the first frame update
     void Start()
     {
         enemy = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-
     }
 
     // Update is called once per frame
@@ -28,31 +25,59 @@ public class HardEnemy : MonoBehaviour
             target.y = transform.position.y;
             transform.position = target;
         }
-
-        
     }
+
+  
+
+    public void takeDamage(int damage)
+    {
+        hardEnemyHP -= damage;
+        if (hardEnemyHP <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    /*
+    private void damageHealth()
+    {
+        hardEnemyHP = hardEnemyHP -= bulletDamage;
+        if (hardEnemyHP <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    */
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "bullet")
         {
+            /*
+            other.gameObject.SetActive(false);
+            Destroy(this.gameObject);
+            */
             hardEnemyHP -= bulletDamage;
 
-            if (hardEnemyHP == 0)
-            {
-                Destroy(other.gameObject);
-            }
+        }
+        if (other.gameObject.tag == "Player")
+        {
+            /*
+            other.gameObject.SetActive(false);
+            Destroy(this.gameObject);
+            */
+            hardEnemyHP -= bulletDamage;
+
         }
     }
 
-    public void TakeDamage(int damage)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        hardEnemyHP = damage;
-
+        if (collision.gameObject.tag == "HardEnemy")
+        {
+            hardEnemyHP -= bulletDamage;
+        }
     }
- 
-
-
-    
 }
 

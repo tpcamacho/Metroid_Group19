@@ -12,7 +12,8 @@ public class EasyEnemy : MonoBehaviour
     private bool movingRight = true;
 
     public int easyEnemyHP = 1;
-    private int bulletDamage = 1;
+    public int bulletDamage = 1;
+
 
     // Start is called before the first frame update
     void Start()
@@ -53,33 +54,40 @@ public class EasyEnemy : MonoBehaviour
             }
         }
     }
+
+    
+
+    public void takeDamage (int damage)
+    {
+        easyEnemyHP -= damage;
+        if (easyEnemyHP <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "bullet")
         {
             easyEnemyHP -= bulletDamage;
 
-            if (easyEnemyHP == 0)
-            {
-                Destroy(other.gameObject);
-            }
         }
-    }
-
-    /*
-    public void takeDamage (int damage)
-    {
-        easyEnemyHP = damage;
-
-        if (easyEnemyHP <= 0)
+        if (other.gameObject.tag == "Player")
         {
-            die();
+            easyEnemyHP -= bulletDamage;
+
         }
     }
 
-    void die()
+
+    private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.tag == "HardEnemy")
+        {
+            easyEnemyHP -= bulletDamage;
+        }
     }
-    */
+
+
 }
