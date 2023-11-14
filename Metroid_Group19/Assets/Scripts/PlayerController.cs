@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-
+        //player dies if they fall off the game
         if (transform.position.y <= deathYLevel)
         {
             SceneManager.LoadScene(1);
@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
         LosingHP();
     }
 
+    // avoids double jump
     private void HandleJump()
     {
         RaycastHit hit;
@@ -96,7 +97,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //attempt failed
+    //player loses hp and loses if hp is zero
     private void LosingHP()
     {
 
@@ -112,20 +113,26 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //player teleports to another position
         if (other.gameObject.tag == "Portal")
         {
             startingPos = other.gameObject.GetComponent<Portal>().teleportPoint.transform.position;
             transform.position = startingPos;
         }
+
+        //player loses health from easy enemy
         if (other.gameObject.tag == "EasyEnemy")
         {
             HP -= easyEnemyDamage;
         }
+
+        //player loses health from hard enemy
         if (other.gameObject.tag == "HardEnemy")
         {
             HP -= hardEnemyDamage;
         }
 
+        //player gets 100 hp
         if (other.gameObject.tag == "Health")
         {
             HP = 100;
@@ -133,6 +140,7 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
         }
 
+        // players gets key
         if (other.gameObject.tag == "Key")
         {
             Debug.Log("Collided with a key");
@@ -143,16 +151,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // damage from easy enemy
         if (collision.gameObject.tag == "EasyEnemy")
         {
             HP -= easyEnemyDamage;
         }
 
+        // damaage from hard enemy
         if (collision.gameObject.tag == "HardEnemy")
         {
             HP -= hardEnemyDamage;
         }
 
+        //check to see if key is needed or not to open door
         if (collision.gameObject.tag == "Door")
         {
             Debug.Log("Collide with door");

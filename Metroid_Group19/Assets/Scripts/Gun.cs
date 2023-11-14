@@ -13,6 +13,7 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //player shoots when pressing space
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Shoot();

@@ -8,6 +8,7 @@ public class Rotate : MonoBehaviour
     public GameObject Player;
     Vector3 offset;
 
+    //all prevents camera from rotating with character
     // Start is called before the first frame update
     void Start()
     {

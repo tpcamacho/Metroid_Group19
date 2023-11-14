@@ -56,7 +56,7 @@ public class EasyEnemy : MonoBehaviour
     }
 
     
-
+    // enemy takes damage until they die if hp goes to zero
     public void takeDamage (int damage)
     {
         easyEnemyHP -= damage;
@@ -66,13 +66,16 @@ public class EasyEnemy : MonoBehaviour
         }
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
+        //enemy takes damage from bullet
         if (other.gameObject.tag == "bullet")
         {
             easyEnemyHP -= bulletDamage;
 
         }
+        //enemy takes damage from bullet
         if (other.gameObject.tag == "Player")
         {
             easyEnemyHP -= bulletDamage;
@@ -80,10 +83,10 @@ public class EasyEnemy : MonoBehaviour
         }
     }
 
-
+    //enemy takes damage from bullet
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "HardEnemy")
+        if (collision.gameObject.tag == "EasyEnemy")
         {
             easyEnemyHP -= bulletDamage;
         }
