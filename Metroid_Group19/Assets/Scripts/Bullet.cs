@@ -10,9 +10,7 @@ public class Bullet : MonoBehaviour
 
     public Rigidbody rigidBody;
 
-    private int easyEnemyHP = 1;
-
-    private int hardEnemyHP = 10;
+   
 
     // Start is called before the first frame update
     void Start()
