@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
     private bool facingRight = true;
 
+    public int keysCollected = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -130,6 +132,13 @@ public class PlayerController : MonoBehaviour
 
             Destroy(other.gameObject);
         }
+
+        if (other.gameObject.tag == "Key")
+        {
+            Debug.Log("Collided with a key");
+            keysCollected++;
+            other.gameObject.SetActive(false);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -144,6 +153,22 @@ public class PlayerController : MonoBehaviour
             HP -= hardEnemyDamage;
         }
 
+        if (collision.gameObject.tag == "Door")
+        {
+            Debug.Log("Collide with door");
+
+            Door collidedDoor = collision.gameObject.GetComponent<Door>();
+
+            if (keysCollected >= collidedDoor.keyRequired)
+            {
+                collision.gameObject.SetActive(false);
+                keysCollected -= collidedDoor.keyRequired;
+            }
+            else
+            {
+                Debug.Log("You need a key!");
+            }
+        }
     }
 
     /*

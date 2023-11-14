@@ -9,6 +9,8 @@ TagManager:
   - HardEnemy
   - Health
   - bullet
+  - Door
+  - Key
   layers:
   - Default
   - TransparentFX
