@@ -7,6 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public Material clear;
+    public float blinkDuration = 5f;
+    private Material teal;
+    private Renderer playerRenderer;
+    private bool noDamage = false;
+
     public int HP = 99;
 
     public float speed = 10f;
@@ -22,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     private int easyEnemyDamage = 15;
     private int hardEnemyDamage = 35;
+    private int spikeDamage = 10;
 
 
     private bool facingRight = true;
@@ -37,6 +44,9 @@ public class PlayerController : MonoBehaviour
 
         //set the starting position
         startingPos = transform.position;
+
+        playerRenderer = GetComponent<Renderer>();
+        teal = playerRenderer.material;
     }
 
     // Update is called once per frame
@@ -99,8 +109,6 @@ public class PlayerController : MonoBehaviour
     //player loses hp and loses if hp is zero
     private void LosingHP()
     {
-
-
         if (HP <= 0)
         {
             SceneManager.LoadScene(1);
@@ -123,18 +131,34 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "EasyEnemy")
         {
             HP -= easyEnemyDamage;
+            StartCoroutine(BlinkEffect());
         }
 
         //player loses health from hard enemy
         if (other.gameObject.tag == "HardEnemy")
         {
             HP -= hardEnemyDamage;
+            StartCoroutine(BlinkEffect());
+        }
+
+        if (other.gameObject.tag == "spike")
+        {
+            HP -= spikeDamage;
+            StartCoroutine(BlinkEffect());
         }
 
         //player gets 100 hp
         if (other.gameObject.tag == "Health")
         {
             HP = 100;
+
+            Destroy(other.gameObject);
+        }
+
+        //player gets extra hp
+        if (other.gameObject.tag == "Extra")
+        {
+            HP += 15;
 
             Destroy(other.gameObject);
         }
@@ -146,6 +170,18 @@ public class PlayerController : MonoBehaviour
             keysCollected++;
             other.gameObject.SetActive(false);
         }
+        if (!noDamage && other.CompareTag("EasyEnemy"))
+        {
+            StartCoroutine(BlinkEffect());
+        }
+        if (!noDamage && other.CompareTag("HardEnemy"))
+        {
+            StartCoroutine(BlinkEffect());
+        }
+        if (!noDamage && other.CompareTag("spike"))
+        {
+            StartCoroutine(BlinkEffect());
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -154,12 +190,14 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "EasyEnemy")
         {
             HP -= easyEnemyDamage;
+            StartCoroutine(BlinkEffect());
         }
 
         // damaage from hard enemy
         if (collision.gameObject.tag == "HardEnemy")
         {
             HP -= hardEnemyDamage;
+            StartCoroutine(BlinkEffect());
         }
 
         //check to see if key is needed or not to open door
@@ -180,6 +218,19 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    IEnumerator BlinkEffect()
+    {
+        noDamage = true;
+
+        playerRenderer.material = clear;
+
+        yield return new WaitForSeconds(blinkDuration);
+
+        playerRenderer.material = teal;
+        noDamage = false;
+    }
+
 
     /*
 
