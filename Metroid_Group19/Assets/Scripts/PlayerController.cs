@@ -232,36 +232,6 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    /*
-
-    private void Blink()
-    {
-        if (canTakeDamage)
-        {
-            StartCoroutine(SetInvincible());
-        }
-    }
-        
-    /*
-
-    public IEnumerator Blink()
-    {
-        for(int Index = 0; Index < 30; Index++)
-        {
-            if (Index % 2 == 0)
-            {
-                GetComponent<MeshRenderer>().enabled = false;
-            }
-            else
-            {
-                GetComponent<MeshRenderer>().enabled = false;
-            }
-            yield return new WaitForSeconds(5f);
-        }
-        GetComponent<MeshRenderer>().enabled = true;
-    }
-    */
-
     private void RotatePlayerModel(float angle)
     {
         Vector3 currentRotation = transform.rotation.eulerAngles;
@@ -270,46 +240,4 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    /*
-    //look at unit 17 coroutines example
-    IEnumerator SetInvincible()
-    {
-        canTakeDamage = false;
-
-        float binkDuration = 5f;
-        float blinkSpeed = 0.2f;
-        float elapsedTime = 0f;
-
-        while (elapsedTime < binkDuration)
-        {
-            SetRenderersVisibility(!AreRenderersVisible());
-            yield return new WaitForSeconds(blinkSpeed);
-            elapsedTime += blinkSpeed;
-        }
-
-        SetRenderersVisibility(true);
-        canTakeDamage = true;
-    }
-
-    private void SetRenderersVisibility(bool visible)
-    {  
-        foreach (Renderer renderer in renderers)
-        {
-            renderer.enabled = visible;
-        }
-    }
-
-    private bool AreRenderersVisible()
-    {  
-        foreach (Renderer renderer in renderers)
-        {
-            if (renderer.enabled)
-            {
-                return true;
-            }
-        }
-        return false;
-    }   
-
-    */
 }
